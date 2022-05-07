@@ -1,0 +1,12 @@
+body {
+    max-width: 800px;
+    margin: auto;
+    font-family: sans-serif;
+    color: #3b4045;
+}
+
+p{
+    line-height: 1.6;
+    text-align: justify;
+}
+
