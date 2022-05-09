@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\QuestionController;
+use App\Http\Controllers\AnswerController;
+use App\Models\Question;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,10 +16,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('questions');
-});
+
+Route::get('/', [QuestionController::class, 'showAll']);
 
 Route::get('/ask', function () {
     return view('ask_question');
 });
+
+Route::get('/questions/{id}', function ($id) {
+    $q = Question::with('answers')->findOrFail($id);
+    return view('question', ['question' => $q]);
+});
+
+Route::post('/ask-question', [QuestionController::class, 'add']);
+Route::post('/answers/{id}', [AnswerController::class, 'addAns']);

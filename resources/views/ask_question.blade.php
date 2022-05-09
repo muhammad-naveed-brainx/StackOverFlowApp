@@ -4,7 +4,8 @@
     <div class="container mt-3">
         <div class="p-3"><h2>Ask a public question</h2></div>
 
-        <form action="/">
+        <form action="/ask-question" method="post">
+            @csrf
             <div class="mb-3 mt-3">
                 <label class="fw-bold" for="q-title">Title:</label>
                 <p><small>Be specific and imagine you’re asking a question to another person</small></p>

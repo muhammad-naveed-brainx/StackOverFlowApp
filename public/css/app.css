@@ -9,4 +9,14 @@ p{
     line-height: 1.6;
     text-align: justify;
 }
+a{
+    text-decoration: none;
+}
 
+/* this means that all articles except the first one*/
+
+article + article {
+    margin-top: 3rem;
+    padding-top: 3rem;
+    border-top: 1px solid gray;
+}

@@ -9,8 +9,15 @@
             </a>
         </div>
     </div>
-    <div class="question-summary d-flex p-3 ">
-        <div class="p-2">votes and answers</div>
-        <div class="p-2 bg-info flex-fill">Question Title</div>
-    </div>
+    @foreach($questions as $q)
+    <article class="row px-1 py">
+        <div class="col-sm-2">
+            <div>{{$q->vote}} votes</div>
+            <div>{{$q->answers->count()}} answers</div>
+        </div>
+        <div class="col-sm-10">
+            <h2> <a href="questions/{{$q->id}}"> {{$q->title}} </a></h2>
+        </div>
+    </article>
+    @endforeach
 @endsection
