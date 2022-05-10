@@ -1,22 +1,22 @@
 @extends('base_layout')
 
 @section('content')
-    <div class="d-flex p-3 justify-content-between">
-        <div><h1>Top Questions</h1></div>
+    <div class="d-flex p-3 mb-3 justify-content-between">
+        <div><h2>Top Questions</h2></div>
         <div >
-            <a href="/ask" class="btn btn-primary">
+            <a href="/ask-question" class="btn btn-primary">
                 Ask Question
             </a>
         </div>
     </div>
-    @foreach($questions as $q)
-    <article class="row px-1 py">
+    @foreach($questions as $question)
+    <article class="row px-1">
         <div class="col-sm-2">
-            <div>{{$q->vote}} votes</div>
-            <div>{{$q->answers->count()}} answers</div>
+            <div>{{$question->vote}} votes</div>
+            <div>{{$question->answers->count()}} answers</div>
         </div>
         <div class="col-sm-10">
-            <h2> <a href="questions/{{$q->id}}"> {{$q->title}} </a></h2>
+            <h4> <a href="questions/{{$question->id}}"> {{$question->title}} </a></h4>
         </div>
     </article>
     @endforeach
