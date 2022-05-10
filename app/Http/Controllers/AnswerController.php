@@ -13,6 +13,6 @@ class AnswerController extends Controller
         $answer->body = \request('answerBody');
         $answer->question_id = $id;
         $answer->save();
-        return redirect('/questions/'.$id);
+        return redirect()->route('question.show', ['id'=> $id]);
     }
 }

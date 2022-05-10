@@ -3,8 +3,6 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\AnswerController;
-use App\Http\Controllers\HomeController;
-use App\Models\Question;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,8 +16,8 @@ use App\Models\Question;
 */
 
 
-Route::get('/', [HomeController::class, 'index']);
-Route::get('/ask-question', [QuestionController::class, 'create']);
-Route::get('/questions/{id}',[QuestionController::class, 'show']);
-Route::post('/ask-question', [QuestionController::class, 'store']);
-Route::post('/answers/{id}', [AnswerController::class, 'store']);
+Route::get('/', [QuestionController::class, 'index'])->name('question.index');
+Route::get('/ask-question', [QuestionController::class, 'create'])->name('question.create');
+Route::get('/questions/{id}',[QuestionController::class, 'show'])->name('question.show');
+Route::post('/ask-question', [QuestionController::class, 'store'])->name('question.store');
+Route::post('/answers/{id}', [AnswerController::class, 'store'])->name('answer.store');

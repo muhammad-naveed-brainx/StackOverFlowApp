@@ -25,15 +25,14 @@
                 </div>
                 <div class="col-sm-11"><p> {!! $answer->body !!} </p></div>
             </div>
-            </article>
+        </article>
         @endforeach
 
     </div>
-
 {{--   Post Your answer --}}
     <div class="d-flex flex-column py-3">
         <div>
-            <form action="/answers/{{$question->id}}" method="post">
+            <form action="{{route('answer.store', ['id'=>$question->id])}}" method="post">
                 @csrf
                 <div class="mb-3 mt-3">
                     <h4><label for="answerBody">Your Answer</label></h4>

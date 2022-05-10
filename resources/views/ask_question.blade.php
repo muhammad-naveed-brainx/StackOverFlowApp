@@ -2,7 +2,7 @@
 @section('content')
 
     <div class="container mt-3">
-        <div class="p-3"><h2>Ask a public question</h2></div>
+        <div class="py-4"><h2>Ask a public question</h2></div>
 
         <form action="/ask-question" method="post">
             @csrf
