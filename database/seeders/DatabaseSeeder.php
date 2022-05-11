@@ -10,35 +10,8 @@ use Illuminate\Database\Seeder;
 class DatabaseSeeder extends Seeder
 {
 
-    /**
+    /*
      * Seed the application's database.
-     *public function run()
-    {
-    Question::truncate();
-    Answer::truncate();
-
-    // \App\Models\User::factory(10)->create();
-
-
-    $question = Question::create([
-    'title'=>'this is question 1 title from seeder',
-    'body' => 'this is question body from seeder',
-    'vote' => 1,
-    'created_at' => now(),
-    'updated_at' => now()
-
-    ]);
-
-    Answer::create([
-    'body' => 'lorem epsum body',
-    'vote' => 1,
-    'question_id' => $question->id,
-    'created_at' => now(),
-    'updated_at' => now()
-
-    ]);
-
-    }
      *
      */
 
