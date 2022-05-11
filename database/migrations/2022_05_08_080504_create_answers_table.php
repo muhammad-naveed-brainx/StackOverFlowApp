@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->text('body');
             $table->integer('vote')->default(0);
-            $table->foreignId('question_id');
+            $table->foreignId('question_id')->nullable();
             $table->timestamps();
 
         });
