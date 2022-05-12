@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\AnswerController;
+use App\Http\Controllers\RegisterUserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,3 +22,4 @@ Route::get('/ask-question', [QuestionController::class, 'create'])->name('questi
 Route::get('/questions/{id}',[QuestionController::class, 'show'])->name('question.show');
 Route::post('/ask-question', [QuestionController::class, 'store'])->name('question.store');
 Route::post('/answers/{id}', [AnswerController::class, 'store'])->name('answer.store');
+Route::get('/register', [RegisterUserController::class, 'create'])->name('registerUser.create');
