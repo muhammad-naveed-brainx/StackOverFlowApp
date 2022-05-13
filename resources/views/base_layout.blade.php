@@ -19,6 +19,34 @@
 </head>
 
 <body>
+<!-- A grey horizontal navbar that becomes vertical on small screens -->
+<nav class="navbar navbar-expand-sm bg-light">
+
+    <div class="container-fluid">
+        <!-- Links -->
+        <ul class="nav navbar-nav navbar-right">
+            @auth
+                <span>Welcome, {{auth()->user()->name}}</span>
+
+                <li class="nav-item">
+                    <form action="{{route('user.logout')}}" method="post">
+                        @csrf
+                        <button type="submit" class="btn btn-link nav-link">Logout</button>
+                    </form>
+                </li>
+            @else
+
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('user.create')}}">Register</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('user.createLogin')}}">Login</a>
+            </li>
+            @endauth
+        </ul>
+    </div>
+
+</nav>
 @yield('content')
 </body>
 
