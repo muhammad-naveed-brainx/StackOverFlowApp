@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\AnswerController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,7 +18,12 @@ use App\Http\Controllers\AnswerController;
 
 
 Route::get('/', [QuestionController::class, 'index'])->name('question.index');
-Route::get('/ask-question', [QuestionController::class, 'create'])->name('question.create');
+Route::get('/ask-question', [QuestionController::class, 'create'])->name('question.create')->middleware('auth');
 Route::get('/questions/{id}',[QuestionController::class, 'show'])->name('question.show');
 Route::post('/ask-question', [QuestionController::class, 'store'])->name('question.store');
-Route::post('/answers/{id}', [AnswerController::class, 'store'])->name('answer.store');
+Route::post('/answers/{id}', [AnswerController::class, 'store'])->name('answer.store')->middleware('auth');
+Route::get('/register', [UserController::class, 'create'])->name('user.create');
+Route::post('/register', [UserController::class, 'store'])->name('user.store');
+Route::post('/logout', [UserController::class, 'logout'])->name('user.logout');
+Route::get('/login', [UserController::class, 'createLogin'])->name('user.createLogin');
+Route::post('/login', [UserController::class, 'login'])->name('user.login');
