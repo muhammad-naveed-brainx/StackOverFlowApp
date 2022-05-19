@@ -5,11 +5,14 @@
         <div class="py-4"><h3> {{$question->title}}  </h3></div>
         <article class="row">
             <div class="col-sm-1">
-                <div><a href="#" class="vote-btn"><i class="bi bi-caret-up-fill"></i></a></div>
-                <div class="ps-2 vote-txt">{{$question->vote}}</div>
-                <div><a href="#" class="vote-btn"><i class="bi bi-caret-down-fill"></i></a></div>
+                <div><a href="{{route('question.vote', ['id'=>$question->id, 'vote'=>1])}}" class="vote-btn"><i class="bi bi-caret-up-fill"></i></a></div>
+                <div class="ps-2 vote-txt">{{$question->votes->count()}}</div>
+                <div><a href="{{route('question.vote', ['id'=>$question->id, 'vote'=>0])}}" class="vote-btn"><i class="bi bi-caret-down-fill"></i></a></div>
             </div>
             <div class="col-sm-11"><p> {!! $question->body !!} </p></div>
+            <div class="d-flex flex-row-reverse">
+                <div><a href="{{route('question.edit', ['id' => $question->id])}}">edit</a> | <a href="{{route('question.delete', ['id' => $question->id])}}">delete</a></div>
+            </div>
         </article>
     </div>
 {{--    answers--}}
@@ -19,11 +22,14 @@
         <article>
             <div class="row">
                 <div class="col-sm-1 d-flex flex-column">
-                    <div class="mb-0"><a href="#" class="vote-btn"><i class="bi bi-caret-up-fill"></i></a> </div>
-                    <div class="ps-2 vote-txt">{{$answer->vote}}</div>
-                    <div><a href="" class="vote-btn"> <i class="bi bi-caret-down-fill"></i></a></div>
+                    <div class="mb-0"><a href="{{route('answer.vote', ['id'=>$answer->id, 'vote'=>1])}}" class="vote-btn"><i class="bi bi-caret-up-fill"></i></a> </div>
+                    <div class="ps-2 vote-txt">{{$answer->votes->count()}}</div>
+                    <div><a href="{{route('answer.vote', ['id'=>$answer->id, 'vote'=>0])}}" class="vote-btn"> <i class="bi bi-caret-down-fill"></i></a></div>
                 </div>
                 <div class="col-sm-11"><p> {!! $answer->body !!} </p></div>
+                <div class="d-flex flex-row-reverse">
+                        <div><a href="{{route('answer.edit', ['id' => $answer->id])}}">edit</a> | <a href="{{route('answer.delete', ['id' => $answer->id])}}">delete</a></div>
+                </div>
             </div>
         </article>
         @endforeach

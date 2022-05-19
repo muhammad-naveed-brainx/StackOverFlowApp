@@ -14,20 +14,18 @@
     @foreach($questions as $question)
     <article class="row px-1">
         <div class="col-sm-2">
-            <div>{{$question->vote}} votes</div>
+            <div>{{$question->votes->count()}} votes</div>
             <div>{{$question->answers->count()}} answers</div>
         </div>
-        <div class="col-sm-10">
+        <div class="col-sm-8">
             <h4> <a href="{{route('question.show', ['id' => $question->id])}}"> {{$question->title}} </a></h4>
+        </div>
+        <div class="col-sm-2">
+            <a href="{{route('question.edit', ['id' => $question->id])}}">edit</a> | <a href="{{route('question.delete', ['id' => $question->id])}}">delete</a>
         </div>
     </article>
     @endforeach
-{{--    @if(session()->has('success'))--}}
-{{--        <div class="alert alert-success alert-dismissible fade show">--}}
-{{--            <strong>Success!</strong> {{session('success')}}--}}
-{{--            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>--}}
-{{--        </div>--}}
-{{--    @endif--}}
+
 
 
 @endsection
