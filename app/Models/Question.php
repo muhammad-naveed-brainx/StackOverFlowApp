@@ -14,6 +14,6 @@ class Question extends Model
     }
 
     public function votes(){
-        return $this->belongsToMany(User::class)->wherePivot('vote', 1);
+        return $this->belongsToMany(User::class);
     }
 }
