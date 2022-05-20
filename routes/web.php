@@ -44,7 +44,7 @@ Route::get('/answers/edit/{id}',[AnswerController::class, 'edit'])->name('answer
 Route::post('/answers/update/{id}',[AnswerController::class, 'update'])->name('answer.update')
     ->middleware('auth');
 
-Route::get('/questions/delete/{id}',[QuestionController::class, 'delete'])->name('question.delete')
+Route::get('/questions/delete/{id}',[QuestionController::class, 'destroy'])->name('question.destroy')
     ->middleware('auth');
-Route::get('/answers/delete/{id}',[AnswerController::class, 'delete'])->name('answer.delete')
+Route::get('/answers/delete/{id}',[AnswerController::class, 'destroy'])->name('answer.destroy')
     ->middleware('auth');

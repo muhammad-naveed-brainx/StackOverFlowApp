@@ -16,7 +16,10 @@ return new class extends Migration
         Schema::create('answers', function (Blueprint $table) {
             $table->id();
             $table->text('body');
-            $table->foreignId('question_id')->nullable();
+            $table->foreignId('question_id');
+            $table->foreign('question_id')->references('id')->on('questions')
+                ->onDelete('cascade');
+
             $table->timestamps();
         });
     }

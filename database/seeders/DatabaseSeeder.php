@@ -29,6 +29,9 @@ class DatabaseSeeder extends Seeder
 
         //create 5 users
         User::factory(5)->create();
+        //create 1 user manually
+        User::create( ['name'=>'naveed', 'email'=>'abc@gmail.com', 'password'=>bcrypt('123')]
+        );
 
     }
 

@@ -15,9 +15,9 @@ return new class extends Migration
     {
         Schema::create('answer_user', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('answer_id');
+            $table->foreignId('answer_id')->references('id')->on('answers')
+                ->onDelete('cascade');
             $table->foreignId('user_id');
-//            $table->unique(['answer_id', 'user_id']);
             $table->integer('vote')->default(0);
         });
     }

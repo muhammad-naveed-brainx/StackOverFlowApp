@@ -11,7 +11,7 @@
             </div>
             <div class="col-sm-11"><p> {!! $question->body !!} </p></div>
             <div class="d-flex flex-row-reverse">
-                <div><a href="{{route('question.edit', ['id' => $question->id])}}">edit</a> | <a href="{{route('question.delete', ['id' => $question->id])}}">delete</a></div>
+                <div><a href="{{route('question.edit', ['id' => $question->id])}}">edit</a> | <a href="{{route('question.destroy', ['id' => $question->id])}}">delete</a></div>
             </div>
         </article>
     </div>
@@ -28,7 +28,7 @@
                 </div>
                 <div class="col-sm-11"><p> {!! $answer->body !!} </p></div>
                 <div class="d-flex flex-row-reverse">
-                        <div><a href="{{route('answer.edit', ['id' => $answer->id])}}">edit</a> | <a href="{{route('answer.delete', ['id' => $answer->id])}}">delete</a></div>
+                        <div><a href="{{route('answer.edit', ['id' => $answer->id])}}">edit</a> | <a href="{{route('answer.destroy', ['id' => $answer->id])}}">delete</a></div>
                 </div>
             </div>
         </article>

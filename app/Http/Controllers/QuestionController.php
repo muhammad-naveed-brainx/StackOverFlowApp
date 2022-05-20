@@ -66,7 +66,7 @@ class QuestionController extends Controller
         return redirect()->action([QuestionController::class, 'index']);
     }
 
-    public function delete($id)
+    public function destroy($id)
     {
         $question = Question::findOrFail($id);
         $question->delete();

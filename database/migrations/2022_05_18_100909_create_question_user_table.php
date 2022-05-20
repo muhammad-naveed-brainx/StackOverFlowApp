@@ -16,7 +16,10 @@ return new class extends Migration
         Schema::create('question_user', function (Blueprint $table) {
             $table->id();
             $table->foreignId('question_id');
-            $table->foreignId('user_id');
+            $table->foreign('question_id')->references('id')->on('questions')
+                ->onDelete('cascade');
+            $table->foreignId('user_id')->references('id')->on('users')
+                ->onDelete('cascade');
             $table->integer('vote')->default(0);
         });
     }

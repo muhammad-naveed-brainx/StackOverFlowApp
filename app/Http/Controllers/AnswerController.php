@@ -44,7 +44,7 @@ class AnswerController extends Controller
         return redirect()->action([QuestionController::class, 'show'], ['id' => $questionId]);
     }
 
-    public function delete($id)
+    public function destroy($id)
     {
         $answer = Answer::findOrFail($id);
         $questionId = $answer->question->id;

@@ -21,7 +21,7 @@
             <h4> <a href="{{route('question.show', ['id' => $question->id])}}"> {{$question->title}} </a></h4>
         </div>
         <div class="col-sm-2">
-            <a href="{{route('question.edit', ['id' => $question->id])}}">edit</a> | <a href="{{route('question.delete', ['id' => $question->id])}}">delete</a>
+            <a href="{{route('question.edit', ['id' => $question->id])}}">edit</a> | <a href="{{route('question.destroy', ['id' => $question->id])}}">delete</a>
         </div>
     </article>
     @endforeach
