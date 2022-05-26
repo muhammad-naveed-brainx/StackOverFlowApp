@@ -32,8 +32,7 @@ class QuestionController extends Controller
     {
         $question = Question::with(['votes'=>function($query){
             $query->where('vote',1);
-        }])
-            ->with('answers')
+        }, 'answers'])
             ->findOrFail($id);
         $answers = $question->answers;
         return view('question', ['question' => $question, 'answers'=>$answers]);
@@ -43,8 +42,6 @@ class QuestionController extends Controller
     {
         $question = Question::findOrFail($id);
         $user = auth()->user();
-//        $votes = $question->votes()->wherePivot('vote', 1)->get();
-//        dd($votes[0]->name);
         $question->votes()->detach($user);
         $question->votes()->attach($user, ['vote'=>$vote]);
 
@@ -63,14 +60,14 @@ class QuestionController extends Controller
         $question->title= \request('questionTitle');
         $question->body = \request('questionBody');
         $question->save();
-        return redirect()->action([QuestionController::class, 'index']);
+        return redirect()->route('question.index');
     }
 
     public function destroy($id)
     {
         $question = Question::findOrFail($id);
         $question->delete();
-        return redirect()->action([QuestionController::class, 'index']);
+        return redirect()->route('question.index');
     }
 
 }

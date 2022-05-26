@@ -29,13 +29,13 @@ class AnswerController extends Controller
         return redirect()->route('question.show', ['id'=> $questionId]);
     }
 
-    public function edit($id)
+    public function edit(Request $request, $id)
     {
         $answer = Answer::findOrFail($id);
         return view('edit_answer', ['answer' => $answer]);
     }
 
-    public function update($id)
+    public function update(Request $request, $id)
     {
         $answer = Answer::findOrFail($id);
         $answer->body = \request('answerBody');
