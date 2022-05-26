@@ -19,7 +19,6 @@ class AnswerFactory extends Factory
     {
         return [
             'body' => $this->faker->paragraph,
-            'vote' => $this->faker->numberBetween(0,5),
             'question_id' => Question::factory(),
             'created_at' => now(),
             'updated_at' => now()

@@ -13,14 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('answers', function (Blueprint $table) {
+        Schema::create('question_user', function (Blueprint $table) {
             $table->id();
-            $table->text('body');
             $table->foreignId('question_id');
             $table->foreign('question_id')->references('id')->on('questions')
                 ->onDelete('cascade');
-
-            $table->timestamps();
+            $table->foreignId('user_id')->references('id')->on('users')
+                ->onDelete('cascade');
+            $table->integer('vote')->default(0);
         });
     }
 
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('answers');
+        Schema::dropIfExists('question_user');
     }
 };

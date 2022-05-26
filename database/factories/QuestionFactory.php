@@ -19,7 +19,6 @@ class QuestionFactory extends Factory
         return [
             'title'=> $this->faker->sentence,
             'body' => $this->faker->paragraph,
-            'vote' => $this->faker->numberBetween(0,6),
             'created_at' => now(),
             'updated_at' => now()
         ];
