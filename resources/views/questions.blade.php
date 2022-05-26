@@ -20,9 +20,13 @@
         <div class="col-sm-8">
             <h4> <a href="{{route('question.show', ['id' => $question->id])}}"> {{$question->title}} </a></h4>
         </div>
+        @auth
+        @if($question->user_id == auth()->user()->id)
         <div class="col-sm-2">
             <a href="{{route('question.edit', ['id' => $question->id])}}">edit</a> | <a href="{{route('question.destroy', ['id' => $question->id])}}">delete</a>
         </div>
+        @endif
+        @endauth
     </article>
     @endforeach
 

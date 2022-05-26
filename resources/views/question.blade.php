@@ -10,9 +10,13 @@
                 <div><a href="{{route('question.vote', ['id'=>$question->id, 'vote'=>0])}}" class="vote-btn"><i class="bi bi-caret-down-fill"></i></a></div>
             </div>
             <div class="col-sm-11"><p> {!! $question->body !!} </p></div>
+            @auth
+                @if($question->user_id == auth()->user()->id)
             <div class="d-flex flex-row-reverse">
                 <div><a href="{{route('question.edit', ['id' => $question->id])}}">edit</a> | <a href="{{route('question.destroy', ['id' => $question->id])}}">delete</a></div>
             </div>
+                @endif
+            @endauth
         </article>
     </div>
 {{--    answers--}}
@@ -27,9 +31,13 @@
                     <div><a href="{{route('answer.vote', ['id'=>$answer->id, 'vote'=>0])}}" class="vote-btn"> <i class="bi bi-caret-down-fill"></i></a></div>
                 </div>
                 <div class="col-sm-11"><p> {!! $answer->body !!} </p></div>
+                @auth
+                    @if($answer->user_id == auth()->user()->id)
                 <div class="d-flex flex-row-reverse">
                         <div><a href="{{route('answer.edit', ['id' => $answer->id])}}">edit</a> | <a href="{{route('answer.destroy', ['id' => $answer->id])}}">delete</a></div>
                 </div>
+                    @endif
+                @endauth
             </div>
         </article>
         @endforeach

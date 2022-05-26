@@ -12,6 +12,7 @@ class AnswerController extends Controller
         $answer = new Answer();
         $answer->body = \request('answerBody');
         $answer->question_id = $id;
+        $answer->user_id = auth()->user()->id;
         $answer->save();
         return redirect()->route('question.show', ['id'=> $id]);
     }
@@ -31,7 +32,11 @@ class AnswerController extends Controller
 
     public function edit(Request $request, $id)
     {
+        $user = auth()->user();
         $answer = Answer::findOrFail($id);
+        if ($user->id != $answer->user_id){
+            return "You are not authorized to edit this answer Please login and try again";
+        }
         return view('edit_answer', ['answer' => $answer]);
     }
 

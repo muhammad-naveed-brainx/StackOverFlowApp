@@ -19,6 +19,7 @@ class QuestionController extends Controller
         $question = new Question();
         $question->title= \request('questionTitle');
         $question->body = \request('questionBody');
+        $question->user_id = auth()->user()->id;
         $question->save();
         return redirect()->action([QuestionController::class, 'index']);
     }
@@ -50,7 +51,12 @@ class QuestionController extends Controller
 
     public function edit($id)
     {
+        $user = auth()->user();
         $question = Question::findOrFail($id);
+
+        if ($user->id != $question->user_id){
+            return "You are not authorized to edit this question Please login and try again";
+        }
         return view('edit_question', ['question' => $question]);
     }
 
