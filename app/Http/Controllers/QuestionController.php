@@ -30,9 +30,9 @@ class QuestionController extends Controller
 
     public function show($id)
     {
-        $question = Question::with(['votes'=>function($query){
+        $question = Question::with(['answers', 'votes'=>function($query){
             $query->where('vote',1);
-        }, 'answers'])
+        }])
             ->findOrFail($id);
         $answers = $question->answers;
         return view('question', ['question' => $question, 'answers'=>$answers]);

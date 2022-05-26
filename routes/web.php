@@ -19,7 +19,6 @@ use App\Http\Controllers\UserController;
 
 Route::get('/', [QuestionController::class, 'index'])->name('question.index');
 Route::get('/questions/{id}',[QuestionController::class, 'show'])->name('question.show');
-Route::post('/ask-question', [QuestionController::class, 'store'])->name('question.store');
 Route::get('/register', [UserController::class, 'create'])->name('user.create');
 Route::post('/register', [UserController::class, 'store'])->name('user.store');
 Route::post('/logout', [UserController::class, 'logout'])->name('user.logout');
@@ -37,4 +36,5 @@ Route::middleware('auth')->group(function () {
     Route::post('/answers/update/{id}',[AnswerController::class, 'update'])->name('answer.update');
     Route::get('/questions/delete/{id}',[QuestionController::class, 'destroy'])->name('question.destroy');
     Route::get('/answers/delete/{id}',[AnswerController::class, 'destroy'])->name('answer.destroy');
+    Route::post('/ask-question', [QuestionController::class, 'store'])->name('question.store');
 });
