@@ -18,20 +18,23 @@ class DatabaseSeeder extends Seeder
 
     public function run()
     {
+        //create 5 users
+        User::factory(5)->create();
+        //create 1 user manually
+        $user = User::create( ['name'=>'naveed', 'email'=>'abc@gmail.com', 'password'=>bcrypt('123')]
+        );
+
         //create 5 answers and 5 new corresponding questions
-        Answer::factory(5)->create();
+        Answer::factory(5)->create([
+            'user_id'=>$user->id,
+        ]);
 
         //create one question and 5 answers related to this one question
         $question = Question::factory()->create();
         Answer::factory(5)->create([
-            'question_id' => $question->id
+            'question_id' => $question->id,
+            'user_id' => $user->id,
         ]);
-
-        //create 5 users
-        User::factory(5)->create();
-        //create 1 user manually
-        User::create( ['name'=>'naveed', 'email'=>'abc@gmail.com', 'password'=>bcrypt('123')]
-        );
 
     }
 

@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->text('body');
-            $table->foreignId('user_id')->nullable();
+            $table->foreignId('user_id')->default(6);
             $table->timestamps();
         });
     }
