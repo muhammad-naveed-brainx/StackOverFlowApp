@@ -8,20 +8,28 @@ use phpDocumentor\Reflection\Types\Boolean;
 
 class QuestionController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $questions = Question::with('answers')->get();
-        return view('questions', ['questions' => $questions] );
+//        $questions = Question::with('answers')->get();
+        $questions = Question::with(['answers', 'votes'=>function($query){
+            $query->where('vote',1);
+        }])->get();
+
+        return response()->json($questions);
+
+
+//        return view('questions', ['questions' => $questions] );
     }
 
-    public function store()
+    public function store(Request $request)
     {
         $question = new Question();
-        $question->title= \request('questionTitle');
-        $question->body = \request('questionBody');
-        $question->user_id = auth()->user()->id;
+        $question->title= $request->questionTitle;
+        $question->body = $request->questionBody;
+//        $question->user_id = auth()->user()->id;
         $question->save();
-        return redirect()->action([QuestionController::class, 'index']);
+        return response()->json($question, 201);
+
     }
 
     public function create()
@@ -35,8 +43,8 @@ class QuestionController extends Controller
             $query->where('vote',1);
         }])
             ->findOrFail($id);
-        $answers = $question->answers;
-        return view('question', ['question' => $question, 'answers'=>$answers]);
+
+        return response()->json($question);
     }
 
     public function vote($id,$vote)
@@ -60,20 +68,22 @@ class QuestionController extends Controller
         return view('edit_question', ['question' => $question]);
     }
 
-    public function update($id)
+    public function update(Request $request, $id)
     {
+
+//        return "Hello world you hit update method wit id = " . $id;
         $question = Question::findOrFail($id);
-        $question->title= \request('questionTitle');
-        $question->body = \request('questionBody');
+        $question->title= $request->questionTitle;
+        $question->body = $request->questionBody;
         $question->save();
-        return redirect()->route('question.index');
+        return response()->json($question);
     }
 
     public function destroy($id)
     {
         $question = Question::findOrFail($id);
         $question->delete();
-        return redirect()->route('question.index');
+        return response()->json($question, 200);
     }
 
 }
